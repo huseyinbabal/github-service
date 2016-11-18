@@ -1,0 +1,27 @@
+{
+  "name": "github-service",
+  "version": "1.0.0",
+  "description": "Sample Github Service for NodeSchool Workshop",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.8",
+    "octonode": "^0.7.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huseyinbabal/github-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huseyinbabal/github-service/issues"
+  },
+  "homepage": "https://github.com/huseyinbabal/github-service#readme"
+}

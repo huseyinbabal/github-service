@@ -6,7 +6,9 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.6.8",
+    "node-uuid": "^1.4.7",
     "octonode": "^0.7.6"
   },
   "devDependencies": {},

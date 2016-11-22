@@ -2,6 +2,10 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser');
 
+require('./core/mongo');
+
+var authValidator = require('./util/auth-validator');
+
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
@@ -11,16 +15,42 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use(function(req, res, next) {
+    if (req.url !== '/api/signin') {
+        var authHeader = req.headers["authorization"];
+        authValidator.validateAuth(authHeader, function(authPayload) {
+            if(!authPayload) {
+                res.status(401).json({
+                    status: false,
+                    data: "Unauthorized"
+                });
+            } else {
+                req.authPayload = authPayload;
+                next();
+            }
+        });
+    } else {
+        next();
+    }
+});
+
 var repositoryController = require('./controller/repository');
+var authController = require('./controller/auth');
 
 var router = express.Router();
 
-router.route('/repositories/:username')
+router.route('/signin')
+    .post(authController.signin);
+
+router.route('/repositories')
     .get(repositoryController.list);
+
+router.route('/repositories/:name')
+    .get(repositoryController.get);
 
 app.use('/api', router);
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 
 app.listen(port, function (err) {
     if (err) {

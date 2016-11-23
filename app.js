@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-    if (req.url !== '/api/signin') {
+    if (req.url !== '/api/signin' && req.method !== 'OPTIONS') {
         var authHeader = req.headers["authorization"];
         authValidator.validateAuth(authHeader, function(authPayload) {
             if(!authPayload) {

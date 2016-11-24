@@ -48,6 +48,9 @@ router.route('/repositories')
 router.route('/repositories/:name')
     .get(repositoryController.get);
 
+router.route('/repositories/:name/readme')
+    .get(repositoryController.getReadme);
+
 app.use('/api', router);
 
 var port = process.env.PORT || 5000;

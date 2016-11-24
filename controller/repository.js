@@ -39,3 +39,22 @@ module.exports.get = function(req, res, next) {
         }
     });
 };
+
+module.exports.getReadme = function(req, res, next) {
+    var user = req.authPayload.user;
+    var githubClient = new Github.client(user.access_token);
+    githubClient.get('/repos/' + user.username + '/' + req.params.name + '/readme', {}, function(err, status, body, headers) {
+        if (err) {
+            console.log("Error occurred while fetching repository readme file for %s, err: %s", req.params.name, err.message);
+            res.json({
+                status: false,
+                data: err.message
+            });
+        } else {
+            res.json({
+                status: true,
+                data: body
+            });
+        }
+    });
+};

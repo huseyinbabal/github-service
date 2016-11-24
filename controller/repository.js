@@ -45,7 +45,7 @@ module.exports.getReadme = function(req, res, next) {
     var githubClient = new Github.client(user.access_token);
     githubClient.get('/repos/' + user.username + '/' + req.params.name + '/readme', {}, function(err, status, body, headers) {
         if (err) {
-            console.log("Error occurred while fetching repository readme file for %s, err: %s", req.params.name, err.message);
+            console.log("Error occurred while fetching readme for repository %s, err: %s", req.params.name, err.message);
             res.json({
                 status: false,
                 data: err.message

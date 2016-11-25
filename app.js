@@ -55,10 +55,12 @@ app.use('/api', router);
 
 var port = process.env.PORT || 5000;
 
-app.listen(port, function (err) {
+var server = app.listen(port, function (err) {
     if (err) {
         console.log("Error occurred while running app. ", err);
     } else {
         console.log("App is running on port: ", port);
     }
 });
+
+module.exports = server;

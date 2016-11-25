@@ -11,9 +11,13 @@
     "node-uuid": "^1.4.7",
     "octonode": "^0.7.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.1.1",
+    "supertest": "^2.0.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test MONGO_URI=mongodb://localhost:27017/github-service-test mocha",
     "start": "node app"
   },
   "repository": {
